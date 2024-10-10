@@ -6,17 +6,21 @@
     int column = 1;      // Track the current column number
 %}
 
-%X STRLIT
+
 
 digit      [0-9]
 letter     [a-zA-Z]
 identifier {letter}({letter}|{digit})*
-escape      [\f||\n||\r||\t||\\||\]
+
+escape      (\\[fnrt\"\'\\])
+invalid_escape (\\[^fnrt\'\\])
 string      {identifier}({identifier}|{escape})*
+
+%X STRLIT
 
 %%
 "("                        { printf("Used (\n"); column += yyleng; }
-")"                        { printf("Used )\n"); column += yyleng; }
+")"                        { printf("Used (\n"); column += yyleng; }
 "()"                       { printf("Used ()\n"); column += yyleng; }
 "="                        { printf("Used =\n"); column += yyleng; }
 "*"                        { printf("Used *\n"); column += yyleng; }
@@ -32,9 +36,12 @@ string      {identifier}({identifier}|{escape})*
 {digit}+                   { printf("NATURAL(%s)\n", yytext); column += yyleng; }
 {digit}*"."{digit}+        { printf("DECIMAL(%s)\n", yytext); column += yyleng; }
 {identifier}               { printf("IDENTIFIER(%s)\n", yytext); column += yyleng; }
-"                          { BEGIN(STRLIT); }
-<STRLIT>{string}            {printf("STRLIT(%s)\n, yytext); column += yyleng;}
-<STRLIT>"                   {BEGIN(INITIAL);}  
+
+
+\"                         { BEGIN(STRLIT); }
+<STRLIT>{invalid_escape}   { printf("Line %d, column %d: unknown escape sequence (%s)\n", line, column, yytext); }
+<STRLIT>{string}           {printf("STRLIT(%s)\n", yytext); column += yyleng;}
+<STRLIT>\"                 {BEGIN(INITIAL);}  
 
 [ \t]+                     { column += yyleng; } /* Ignore spaces and tabs, but update the column */
 
