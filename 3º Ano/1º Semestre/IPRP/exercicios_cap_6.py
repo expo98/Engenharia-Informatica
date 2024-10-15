@@ -113,7 +113,8 @@ def exercicio6_17():
             dicionario_invertido[dicionario[key]].append(key)
         else:
             dicionario_invertido[dicionario[key]] = [key]
-            dicionario_invertido.update(key)
+
+    print(dicionario_invertido)
 
             
 
