@@ -3,9 +3,16 @@
 extern int yylex(void);
 void yyerror(char *);
 extern char *yytext;
+
 %}
 
 %token NATURAL
+
+%left '+' '-'
+%left '/' '*'
+%left '(' ')'
+%token ','
+
 
 %%
 
@@ -17,6 +24,7 @@ expression: NATURAL                     { $$ = $1; }
           | expression '-' expression   { $$ = $1 - $3; }
           | expression '*' expression   { $$ = $1 * $3; }
           | expression '/' expression   { $$ = $1 / $3; }
+          | '(' expression ')'          { $$ = $2;      }
           ;
 
 %%
