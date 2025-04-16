@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Googled - Search</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container mt-4">
+        <!-- Form to search with checkbox for indexing top stories -->
+        <form action="/search" method="get" style="margin-top: 30px;">
+            <input type="text" name="query" placeholder="Enter query">
+            <div class="spacer" style="--height: 10px;"></div>
+            <div class="checkbox-container">
+                <input type="checkbox" name="hackerNewsSearch" id="hackerNewsSearch">
+
+                <label for="hackerNewsSearch">
+                    <div class="spacer" style="--height: 5px;"></div>Index Hacker News
+                </label>
+            </div>
+            <div class="spacer" style="--height: 10px;"></div>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Button to search pointing pages -->
+        <form action="/page-links" method="get" style="margin-top: 30px;">
+            <input type="text" name="url" placeholder="Enter URL">
+            <div class="spacer" style="--height: 20px;"></div>
+            <button type="submit">Pointing Pages</button>
+        </form>
+
+        <!-- Form to index a URL -->
+        <form action="/index" method="post" style="margin-top: 30px;">
+            <input type="text" name="url" placeholder="Enter URL to index">
+            <div class="spacer" style="--height: 20px;"></div>
+            <button type="submit">Index URL</button>
+        </form>
+
+        <!-- Form to fetch user stories from Hacker News -->
+        <form action="/fetch-hackernews-stories" method="post" style="margin-top: 30px;">
+            <input type="text" name="username" placeholder="Hacker News username">
+            <div class="spacer" style="--height: 20px;"></div>
+            <button type="submit">Fetch User Stories</button>
+        </form>
+    </div>
+</body>
+
+</html>

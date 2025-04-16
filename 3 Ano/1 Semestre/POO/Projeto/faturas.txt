@@ -1,0 +1,5 @@
+1|111111111|ClienteContinente|CONTINENTE|26.79|4.13|Cereais|1|Cerais de choocolate|2|1.2|Produto Alimentar|Produto Alimentar Normal|Não|
+2|222222222|ClienteAcores|ACORES|38.50|7.79|Vinho tinto|regiao do dao|10|1|4.87|Produto Alimentar|Produto Alimentar Intermedio|Não|VINHO|
+3|333333333|ClienteMadeira|MADEIRA|301.69|59.39|Produto com certificados|23|tem varios certificados|4|9.0|Produto Alimentar|Produto Alimentar Reduzido|Não|ISO22000,GMP|
+3|111111111|ClienteContinente|CONTINENTE|72.27|16.02|computador|42|computar descicao|1|12.33|Produto Alimentar|Produto Alimentar Normal|Não|brufen|55|comprimidos|6|9.99|Produto Farmaceutico|Produto Farmaceutico Nao Prescrito|ANIMAIS|
+4|123456789|cliente aula|MADEIRA|72.27|15.90|compuitador4|42|descricao|1|12.33|Produto Alimentar|Produto Alimentar Normal|Não|brufen|55|descricao|6|9.99|Produto Farmaceutico|Produto Farmaceutico Nao Prescrito|ANIMAIS|

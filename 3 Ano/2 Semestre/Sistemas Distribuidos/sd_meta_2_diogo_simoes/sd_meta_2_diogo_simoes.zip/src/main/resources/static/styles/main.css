@@ -1,0 +1,79 @@
+/* main.css */
+
+/* Center the content */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Minimalistic styling for checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    /* Adjust the width as needed */
+    height: 16px;
+    /* Adjust the height as needed */
+    margin-right: 5px;
+    margin-left: 5px;
+    /* Add margin to position the checkbox */
+    border-radius: 3px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"]:checked {
+    background-color: #007bff;
+}
+
+/* Style for checkbox label */
+.checkbox-container label {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+    color: white;
+    /* Set the color to white */
+}
+
+.spacer {
+    display: block;
+    min-height: var(--height);
+    min-width: var(--width);
+    height: var(--height);
+    width: var(--width);
+}

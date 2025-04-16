@@ -1,0 +1,2685 @@
+   0  $accept : Program $end
+
+   1  Program : PACKAGE IDENTIFIER SEMICOLON Declarations
+
+   2  Declarations : Declarations FuncDeclaration SEMICOLON
+   3               | Declarations VarDeclaration SEMICOLON
+   4               |
+
+   5  VarDeclaration : VAR VarsSpec
+   6                 | VAR LPAR VarsSpec SEMICOLON RPAR
+
+   7  ID2 : IDENTIFIER
+
+   8  VarsSpec : ID2 Type
+   9           | ID2 COMMA2 Type
+
+  10  COMMA2 : COMMA ID2 COMMA2
+  11         | ID2 COMMA2 Type
+
+  12  Type : INT
+  13       | FLOAT32
+  14       | BOOL
+  15       | STRING
+
+  16  FuncDeclaration : FUNC ID2 LPAR FuncParams RPAR Type FuncBody
+  17                  | FUNC ID2 LPAR FuncParams RPAR FuncBody
+  18                  | FUNC ID2 LPAR RPAR Type FuncBody
+  19                  | FUNC ID2 LPAR RPAR FuncBody
+
+  20  FuncParams : ID2 Type COMMAID
+  21             | ID2 Type
+
+  22  COMMAID : COMMA ID2 Type COMMAID
+  23          | COMMA ID2 Type
+
+  24  FuncBody : LBRACE VarsAndStatement RBRACE
+
+  25  VarsAndStatement : VarsAndStatement SEMICOLON
+  26                   | VarsAndStatement VarDeclaration SEMICOLON
+  27                   | VarsAndStatement Statement
+  28                   |
+
+  29  Statement : ID2 ASSIGN Expr
+  30            | LBRACE StatementSC RBRACE
+  31            | LBRACE RBRACE
+  32            | IF Expr LBRACE RBRACE
+  33            | IF Expr LBRACE StatementSC RBRACE
+  34            | IF Expr LBRACE RBRACE ELSE LBRACE RBRACE
+  35            | IF Expr LBRACE RBRACE ELSE LBRACE StatementSC RBRACE
+  36            | IF Expr LBRACE StatementSC RBRACE ELSE LBRACE StatementSC RBRACE
+  37            | FOR LBRACE StatementSC RBRACE
+  38            | FOR LBRACE RBRACE
+  39            | FOR Expr LBRACE RBRACE
+  40            | FOR Expr LBRACE StatementSC RBRACE
+  41            | RETURN Expr
+  42            | RETURN
+  43            | ParseArgs
+  44            | PRINT LPAR Expr RPAR
+  45            | PRINT LPAR STRLIT RPAR
+  46            | FuncInvocation
+  47            | error
+
+  48  StatementSC : StatementSC Statement SEMICOLON
+  49              | Statement SEMICOLON
+
+  50  ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR
+  51            | ID2 COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR
+
+  52  FuncInvocation : ID2 LPAR error RPAR
+  53                 | ID2 LPAR Expr2 RPAR
+  54                 | ID2 LPAR RPAR
+
+  55  Expr2 : COMMA Expr
+  56        | Expr COMMA Expr2
+
+  57  Expr : Expr OR Expr
+  58       | Expr AND Expr
+  59       | Expr GE Expr
+  60       | Expr GT Expr
+  61       | Expr LE Expr
+  62       | Expr LT Expr
+  63       | Expr NE Expr
+  64       | Expr EQ Expr
+  65       | Expr PLUS Expr
+  66       | Expr MINUS Expr
+  67       | Expr STAR Expr
+  68       | Expr DIV Expr
+  69       | Expr MOD Expr
+  70       | NOT Expr
+  71       | MINUS Expr
+  72       | PLUS Expr
+  73       | ID2
+  74       | NATURAL
+  75       | DECIMAL
+  76       | FuncInvocation
+  77       | LPAR Expr RPAR
+  78       | LPAR error RPAR
+
+state 0
+	$accept : . Program $end  (0)
+
+	PACKAGE  shift 1
+	.  error
+
+	Program  goto 2
+
+
+state 1
+	Program : PACKAGE . IDENTIFIER SEMICOLON Declarations  (1)
+
+	IDENTIFIER  shift 3
+	.  error
+
+
+state 2
+	$accept : Program . $end  (0)
+
+	$end  accept
+
+
+state 3
+	Program : PACKAGE IDENTIFIER . SEMICOLON Declarations  (1)
+
+	SEMICOLON  shift 4
+	.  error
+
+
+state 4
+	Program : PACKAGE IDENTIFIER SEMICOLON . Declarations  (1)
+	Declarations : .  (4)
+
+	.  reduce 4
+
+	Declarations  goto 5
+
+
+state 5
+	Program : PACKAGE IDENTIFIER SEMICOLON Declarations .  (1)
+	Declarations : Declarations . FuncDeclaration SEMICOLON  (2)
+	Declarations : Declarations . VarDeclaration SEMICOLON  (3)
+
+	VAR  shift 6
+	FUNC  shift 7
+	$end  reduce 1
+
+	VarDeclaration  goto 8
+	FuncDeclaration  goto 9
+
+
+state 6
+	VarDeclaration : VAR . VarsSpec  (5)
+	VarDeclaration : VAR . LPAR VarsSpec SEMICOLON RPAR  (6)
+
+	LPAR  shift 10
+	IDENTIFIER  shift 11
+	.  error
+
+	VarsSpec  goto 12
+	ID2  goto 13
+
+
+state 7
+	FuncDeclaration : FUNC . ID2 LPAR FuncParams RPAR Type FuncBody  (16)
+	FuncDeclaration : FUNC . ID2 LPAR FuncParams RPAR FuncBody  (17)
+	FuncDeclaration : FUNC . ID2 LPAR RPAR Type FuncBody  (18)
+	FuncDeclaration : FUNC . ID2 LPAR RPAR FuncBody  (19)
+
+	IDENTIFIER  shift 11
+	.  error
+
+	ID2  goto 14
+
+
+state 8
+	Declarations : Declarations VarDeclaration . SEMICOLON  (3)
+
+	SEMICOLON  shift 15
+	.  error
+
+
+state 9
+	Declarations : Declarations FuncDeclaration . SEMICOLON  (2)
+
+	SEMICOLON  shift 16
+	.  error
+
+
+state 10
+	VarDeclaration : VAR LPAR . VarsSpec SEMICOLON RPAR  (6)
+
+	IDENTIFIER  shift 11
+	.  error
+
+	VarsSpec  goto 17
+	ID2  goto 13
+
+
+state 11
+	ID2 : IDENTIFIER .  (7)
+
+	.  reduce 7
+
+
+state 12
+	VarDeclaration : VAR VarsSpec .  (5)
+
+	.  reduce 5
+
+
+state 13
+	VarsSpec : ID2 . Type  (8)
+	VarsSpec : ID2 . COMMA2 Type  (9)
+
+	COMMA  shift 18
+	INT  shift 19
+	FLOAT32  shift 20
+	BOOL  shift 21
+	STRING  shift 22
+	IDENTIFIER  shift 11
+	.  error
+
+	Type  goto 23
+	ID2  goto 24
+	COMMA2  goto 25
+
+
+state 14
+	FuncDeclaration : FUNC ID2 . LPAR FuncParams RPAR Type FuncBody  (16)
+	FuncDeclaration : FUNC ID2 . LPAR FuncParams RPAR FuncBody  (17)
+	FuncDeclaration : FUNC ID2 . LPAR RPAR Type FuncBody  (18)
+	FuncDeclaration : FUNC ID2 . LPAR RPAR FuncBody  (19)
+
+	LPAR  shift 26
+	.  error
+
+
+state 15
+	Declarations : Declarations VarDeclaration SEMICOLON .  (3)
+
+	.  reduce 3
+
+
+state 16
+	Declarations : Declarations FuncDeclaration SEMICOLON .  (2)
+
+	.  reduce 2
+
+
+state 17
+	VarDeclaration : VAR LPAR VarsSpec . SEMICOLON RPAR  (6)
+
+	SEMICOLON  shift 27
+	.  error
+
+
+state 18
+	COMMA2 : COMMA . ID2 COMMA2  (10)
+
+	IDENTIFIER  shift 11
+	.  error
+
+	ID2  goto 28
+
+
+state 19
+	Type : INT .  (12)
+
+	.  reduce 12
+
+
+state 20
+	Type : FLOAT32 .  (13)
+
+	.  reduce 13
+
+
+state 21
+	Type : BOOL .  (14)
+
+	.  reduce 14
+
+
+state 22
+	Type : STRING .  (15)
+
+	.  reduce 15
+
+
+state 23
+	VarsSpec : ID2 Type .  (8)
+
+	.  reduce 8
+
+
+state 24
+	COMMA2 : ID2 . COMMA2 Type  (11)
+
+	COMMA  shift 18
+	IDENTIFIER  shift 11
+	.  error
+
+	ID2  goto 24
+	COMMA2  goto 29
+
+
+state 25
+	VarsSpec : ID2 COMMA2 . Type  (9)
+
+	INT  shift 19
+	FLOAT32  shift 20
+	BOOL  shift 21
+	STRING  shift 22
+	.  error
+
+	Type  goto 30
+
+
+state 26
+	FuncDeclaration : FUNC ID2 LPAR . FuncParams RPAR Type FuncBody  (16)
+	FuncDeclaration : FUNC ID2 LPAR . FuncParams RPAR FuncBody  (17)
+	FuncDeclaration : FUNC ID2 LPAR . RPAR Type FuncBody  (18)
+	FuncDeclaration : FUNC ID2 LPAR . RPAR FuncBody  (19)
+
+	RPAR  shift 31
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncParams  goto 32
+	ID2  goto 33
+
+
+state 27
+	VarDeclaration : VAR LPAR VarsSpec SEMICOLON . RPAR  (6)
+
+	RPAR  shift 34
+	.  error
+
+
+state 28
+	COMMA2 : COMMA ID2 . COMMA2  (10)
+
+	COMMA  shift 18
+	IDENTIFIER  shift 11
+	.  error
+
+	ID2  goto 24
+	COMMA2  goto 35
+
+
+state 29
+	COMMA2 : ID2 COMMA2 . Type  (11)
+
+	INT  shift 19
+	FLOAT32  shift 20
+	BOOL  shift 21
+	STRING  shift 22
+	.  error
+
+	Type  goto 36
+
+
+state 30
+	VarsSpec : ID2 COMMA2 Type .  (9)
+
+	.  reduce 9
+
+
+state 31
+	FuncDeclaration : FUNC ID2 LPAR RPAR . Type FuncBody  (18)
+	FuncDeclaration : FUNC ID2 LPAR RPAR . FuncBody  (19)
+
+	LBRACE  shift 37
+	INT  shift 19
+	FLOAT32  shift 20
+	BOOL  shift 21
+	STRING  shift 22
+	.  error
+
+	Type  goto 38
+	FuncBody  goto 39
+
+
+state 32
+	FuncDeclaration : FUNC ID2 LPAR FuncParams . RPAR Type FuncBody  (16)
+	FuncDeclaration : FUNC ID2 LPAR FuncParams . RPAR FuncBody  (17)
+
+	RPAR  shift 40
+	.  error
+
+
+state 33
+	FuncParams : ID2 . Type COMMAID  (20)
+	FuncParams : ID2 . Type  (21)
+
+	INT  shift 19
+	FLOAT32  shift 20
+	BOOL  shift 21
+	STRING  shift 22
+	.  error
+
+	Type  goto 41
+
+
+state 34
+	VarDeclaration : VAR LPAR VarsSpec SEMICOLON RPAR .  (6)
+
+	.  reduce 6
+
+
+state 35
+	COMMA2 : COMMA ID2 COMMA2 .  (10)
+
+	.  reduce 10
+
+
+state 36
+	COMMA2 : ID2 COMMA2 Type .  (11)
+
+	.  reduce 11
+
+
+state 37
+	FuncBody : LBRACE . VarsAndStatement RBRACE  (24)
+	VarsAndStatement : .  (28)
+
+	.  reduce 28
+
+	VarsAndStatement  goto 42
+
+
+state 38
+	FuncDeclaration : FUNC ID2 LPAR RPAR Type . FuncBody  (18)
+
+	LBRACE  shift 37
+	.  error
+
+	FuncBody  goto 43
+
+
+state 39
+	FuncDeclaration : FUNC ID2 LPAR RPAR FuncBody .  (19)
+
+	.  reduce 19
+
+
+state 40
+	FuncDeclaration : FUNC ID2 LPAR FuncParams RPAR . Type FuncBody  (16)
+	FuncDeclaration : FUNC ID2 LPAR FuncParams RPAR . FuncBody  (17)
+
+	LBRACE  shift 37
+	INT  shift 19
+	FLOAT32  shift 20
+	BOOL  shift 21
+	STRING  shift 22
+	.  error
+
+	Type  goto 44
+	FuncBody  goto 45
+
+
+state 41
+	FuncParams : ID2 Type . COMMAID  (20)
+	FuncParams : ID2 Type .  (21)
+
+	COMMA  shift 46
+	RPAR  reduce 21
+
+	COMMAID  goto 47
+
+
+state 42
+	FuncBody : LBRACE VarsAndStatement . RBRACE  (24)
+	VarsAndStatement : VarsAndStatement . SEMICOLON  (25)
+	VarsAndStatement : VarsAndStatement . VarDeclaration SEMICOLON  (26)
+	VarsAndStatement : VarsAndStatement . Statement  (27)
+
+	error  shift 48
+	SEMICOLON  shift 49
+	LBRACE  shift 50
+	RBRACE  shift 51
+	VAR  shift 6
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	VarDeclaration  goto 56
+	FuncInvocation  goto 57
+	ID2  goto 58
+	ParseArgs  goto 59
+	Statement  goto 60
+
+
+state 43
+	FuncDeclaration : FUNC ID2 LPAR RPAR Type FuncBody .  (18)
+
+	.  reduce 18
+
+
+state 44
+	FuncDeclaration : FUNC ID2 LPAR FuncParams RPAR Type . FuncBody  (16)
+
+	LBRACE  shift 37
+	.  error
+
+	FuncBody  goto 61
+
+
+state 45
+	FuncDeclaration : FUNC ID2 LPAR FuncParams RPAR FuncBody .  (17)
+
+	.  reduce 17
+
+
+state 46
+	COMMAID : COMMA . ID2 Type COMMAID  (22)
+	COMMAID : COMMA . ID2 Type  (23)
+
+	IDENTIFIER  shift 11
+	.  error
+
+	ID2  goto 62
+
+
+state 47
+	FuncParams : ID2 Type COMMAID .  (20)
+
+	.  reduce 20
+
+
+state 48
+	Statement : error .  (47)
+
+	.  reduce 47
+
+
+state 49
+	VarsAndStatement : VarsAndStatement SEMICOLON .  (25)
+
+	.  reduce 25
+
+
+state 50
+	Statement : LBRACE . StatementSC RBRACE  (30)
+	Statement : LBRACE . RBRACE  (31)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 63
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	StatementSC  goto 64
+	ParseArgs  goto 59
+	Statement  goto 65
+
+
+state 51
+	FuncBody : LBRACE VarsAndStatement RBRACE .  (24)
+
+	.  reduce 24
+
+
+52: shift/reduce conflict (shift 11, reduce 42) on IDENTIFIER
+state 52
+	Statement : RETURN . Expr  (41)
+	Statement : RETURN .  (42)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	error  reduce 42
+	SEMICOLON  reduce 42
+	LBRACE  reduce 42
+	RBRACE  reduce 42
+	VAR  reduce 42
+	RETURN  reduce 42
+	IF  reduce 42
+	FOR  reduce 42
+	PRINT  reduce 42
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 74
+
+
+state 53
+	Statement : IF . Expr LBRACE RBRACE  (32)
+	Statement : IF . Expr LBRACE StatementSC RBRACE  (33)
+	Statement : IF . Expr LBRACE RBRACE ELSE LBRACE RBRACE  (34)
+	Statement : IF . Expr LBRACE RBRACE ELSE LBRACE StatementSC RBRACE  (35)
+	Statement : IF . Expr LBRACE StatementSC RBRACE ELSE LBRACE StatementSC RBRACE  (36)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 75
+
+
+state 54
+	Statement : FOR . LBRACE StatementSC RBRACE  (37)
+	Statement : FOR . LBRACE RBRACE  (38)
+	Statement : FOR . Expr LBRACE RBRACE  (39)
+	Statement : FOR . Expr LBRACE StatementSC RBRACE  (40)
+
+	LBRACE  shift 76
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 77
+
+
+state 55
+	Statement : PRINT . LPAR Expr RPAR  (44)
+	Statement : PRINT . LPAR STRLIT RPAR  (45)
+
+	LPAR  shift 78
+	.  error
+
+
+state 56
+	VarsAndStatement : VarsAndStatement VarDeclaration . SEMICOLON  (26)
+
+	SEMICOLON  shift 79
+	.  error
+
+
+state 57
+	Statement : FuncInvocation .  (46)
+
+	.  reduce 46
+
+
+state 58
+	Statement : ID2 . ASSIGN Expr  (29)
+	ParseArgs : ID2 . COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  (50)
+	ParseArgs : ID2 . COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR  (51)
+	FuncInvocation : ID2 . LPAR error RPAR  (52)
+	FuncInvocation : ID2 . LPAR Expr2 RPAR  (53)
+	FuncInvocation : ID2 . LPAR RPAR  (54)
+
+	COMMA  shift 80
+	LPAR  shift 81
+	ASSIGN  shift 82
+	.  error
+
+
+state 59
+	Statement : ParseArgs .  (43)
+
+	.  reduce 43
+
+
+state 60
+	VarsAndStatement : VarsAndStatement Statement .  (27)
+
+	.  reduce 27
+
+
+state 61
+	FuncDeclaration : FUNC ID2 LPAR FuncParams RPAR Type FuncBody .  (16)
+
+	.  reduce 16
+
+
+state 62
+	COMMAID : COMMA ID2 . Type COMMAID  (22)
+	COMMAID : COMMA ID2 . Type  (23)
+
+	INT  shift 19
+	FLOAT32  shift 20
+	BOOL  shift 21
+	STRING  shift 22
+	.  error
+
+	Type  goto 83
+
+
+state 63
+	Statement : LBRACE RBRACE .  (31)
+
+	.  reduce 31
+
+
+state 64
+	Statement : LBRACE StatementSC . RBRACE  (30)
+	StatementSC : StatementSC . Statement SEMICOLON  (48)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 84
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	ParseArgs  goto 59
+	Statement  goto 85
+
+
+state 65
+	StatementSC : Statement . SEMICOLON  (49)
+
+	SEMICOLON  shift 86
+	.  error
+
+
+state 66
+	Expr : LPAR . Expr RPAR  (77)
+	Expr : LPAR . error RPAR  (78)
+
+	error  shift 87
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 88
+
+
+state 67
+	Expr : MINUS . Expr  (71)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 89
+
+
+state 68
+	Expr : PLUS . Expr  (72)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 90
+
+
+state 69
+	Expr : NOT . Expr  (70)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 91
+
+
+state 70
+	Expr : NATURAL .  (74)
+
+	.  reduce 74
+
+
+state 71
+	Expr : DECIMAL .  (75)
+
+	.  reduce 75
+
+
+state 72
+	Expr : FuncInvocation .  (76)
+
+	.  reduce 76
+
+
+state 73
+	FuncInvocation : ID2 . LPAR error RPAR  (52)
+	FuncInvocation : ID2 . LPAR Expr2 RPAR  (53)
+	FuncInvocation : ID2 . LPAR RPAR  (54)
+	Expr : ID2 .  (73)
+
+	LPAR  shift 81
+	error  reduce 73
+	SEMICOLON  reduce 73
+	COMMA  reduce 73
+	LBRACE  reduce 73
+	RBRACE  reduce 73
+	RPAR  reduce 73
+	RSQ  reduce 73
+	STAR  reduce 73
+	DIV  reduce 73
+	MINUS  reduce 73
+	PLUS  reduce 73
+	GE  reduce 73
+	GT  reduce 73
+	LE  reduce 73
+	LT  reduce 73
+	NE  reduce 73
+	EQ  reduce 73
+	VAR  reduce 73
+	MOD  reduce 73
+	AND  reduce 73
+	OR  reduce 73
+	RETURN  reduce 73
+	IF  reduce 73
+	FOR  reduce 73
+	PRINT  reduce 73
+	IDENTIFIER  reduce 73
+
+
+state 74
+	Statement : RETURN Expr .  (41)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	error  reduce 41
+	SEMICOLON  reduce 41
+	LBRACE  reduce 41
+	RBRACE  reduce 41
+	VAR  reduce 41
+	RETURN  reduce 41
+	IF  reduce 41
+	FOR  reduce 41
+	PRINT  reduce 41
+	IDENTIFIER  reduce 41
+
+
+state 75
+	Statement : IF Expr . LBRACE RBRACE  (32)
+	Statement : IF Expr . LBRACE StatementSC RBRACE  (33)
+	Statement : IF Expr . LBRACE RBRACE ELSE LBRACE RBRACE  (34)
+	Statement : IF Expr . LBRACE RBRACE ELSE LBRACE StatementSC RBRACE  (35)
+	Statement : IF Expr . LBRACE StatementSC RBRACE ELSE LBRACE StatementSC RBRACE  (36)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	LBRACE  shift 105
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	.  error
+
+
+state 76
+	Statement : FOR LBRACE . StatementSC RBRACE  (37)
+	Statement : FOR LBRACE . RBRACE  (38)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 106
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	StatementSC  goto 107
+	ParseArgs  goto 59
+	Statement  goto 65
+
+
+state 77
+	Statement : FOR Expr . LBRACE RBRACE  (39)
+	Statement : FOR Expr . LBRACE StatementSC RBRACE  (40)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	LBRACE  shift 108
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	.  error
+
+
+state 78
+	Statement : PRINT LPAR . Expr RPAR  (44)
+	Statement : PRINT LPAR . STRLIT RPAR  (45)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	STRLIT  shift 109
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 110
+
+
+state 79
+	VarsAndStatement : VarsAndStatement VarDeclaration SEMICOLON .  (26)
+
+	.  reduce 26
+
+
+state 80
+	ParseArgs : ID2 COMMA . BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  (50)
+	ParseArgs : ID2 COMMA . BLANKID ASSIGN PARSEINT LPAR error RPAR  (51)
+
+	BLANKID  shift 111
+	.  error
+
+
+state 81
+	FuncInvocation : ID2 LPAR . error RPAR  (52)
+	FuncInvocation : ID2 LPAR . Expr2 RPAR  (53)
+	FuncInvocation : ID2 LPAR . RPAR  (54)
+
+	error  shift 112
+	COMMA  shift 113
+	LPAR  shift 66
+	RPAR  shift 114
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 115
+	Expr2  goto 116
+
+
+state 82
+	Statement : ID2 ASSIGN . Expr  (29)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 117
+
+
+state 83
+	COMMAID : COMMA ID2 Type . COMMAID  (22)
+	COMMAID : COMMA ID2 Type .  (23)
+
+	COMMA  shift 46
+	RPAR  reduce 23
+
+	COMMAID  goto 118
+
+
+state 84
+	Statement : LBRACE StatementSC RBRACE .  (30)
+
+	.  reduce 30
+
+
+state 85
+	StatementSC : StatementSC Statement . SEMICOLON  (48)
+
+	SEMICOLON  shift 119
+	.  error
+
+
+state 86
+	StatementSC : Statement SEMICOLON .  (49)
+
+	.  reduce 49
+
+
+state 87
+	Expr : LPAR error . RPAR  (78)
+
+	RPAR  shift 120
+	.  error
+
+
+state 88
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+	Expr : LPAR Expr . RPAR  (77)
+
+	RPAR  shift 121
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	.  error
+
+
+state 89
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+	Expr : MINUS Expr .  (71)
+
+	STAR  shift 92
+	DIV  shift 93
+	MOD  shift 102
+	error  reduce 71
+	SEMICOLON  reduce 71
+	COMMA  reduce 71
+	LBRACE  reduce 71
+	RBRACE  reduce 71
+	RPAR  reduce 71
+	RSQ  reduce 71
+	MINUS  reduce 71
+	PLUS  reduce 71
+	GE  reduce 71
+	GT  reduce 71
+	LE  reduce 71
+	LT  reduce 71
+	NE  reduce 71
+	EQ  reduce 71
+	VAR  reduce 71
+	AND  reduce 71
+	OR  reduce 71
+	RETURN  reduce 71
+	IF  reduce 71
+	FOR  reduce 71
+	PRINT  reduce 71
+	IDENTIFIER  reduce 71
+
+
+state 90
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+	Expr : PLUS Expr .  (72)
+
+	STAR  shift 92
+	DIV  shift 93
+	MOD  shift 102
+	error  reduce 72
+	SEMICOLON  reduce 72
+	COMMA  reduce 72
+	LBRACE  reduce 72
+	RBRACE  reduce 72
+	RPAR  reduce 72
+	RSQ  reduce 72
+	MINUS  reduce 72
+	PLUS  reduce 72
+	GE  reduce 72
+	GT  reduce 72
+	LE  reduce 72
+	LT  reduce 72
+	NE  reduce 72
+	EQ  reduce 72
+	VAR  reduce 72
+	AND  reduce 72
+	OR  reduce 72
+	RETURN  reduce 72
+	IF  reduce 72
+	FOR  reduce 72
+	PRINT  reduce 72
+	IDENTIFIER  reduce 72
+
+
+state 91
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+	Expr : NOT Expr .  (70)
+
+	.  reduce 70
+
+
+state 92
+	Expr : Expr STAR . Expr  (67)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 122
+
+
+state 93
+	Expr : Expr DIV . Expr  (68)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 123
+
+
+state 94
+	Expr : Expr MINUS . Expr  (66)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 124
+
+
+state 95
+	Expr : Expr PLUS . Expr  (65)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 125
+
+
+state 96
+	Expr : Expr GE . Expr  (59)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 126
+
+
+state 97
+	Expr : Expr GT . Expr  (60)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 127
+
+
+state 98
+	Expr : Expr LE . Expr  (61)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 128
+
+
+state 99
+	Expr : Expr LT . Expr  (62)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 129
+
+
+state 100
+	Expr : Expr NE . Expr  (63)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 130
+
+
+state 101
+	Expr : Expr EQ . Expr  (64)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 131
+
+
+state 102
+	Expr : Expr MOD . Expr  (69)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 132
+
+
+state 103
+	Expr : Expr AND . Expr  (58)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 133
+
+
+state 104
+	Expr : Expr OR . Expr  (57)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 134
+
+
+state 105
+	Statement : IF Expr LBRACE . RBRACE  (32)
+	Statement : IF Expr LBRACE . StatementSC RBRACE  (33)
+	Statement : IF Expr LBRACE . RBRACE ELSE LBRACE RBRACE  (34)
+	Statement : IF Expr LBRACE . RBRACE ELSE LBRACE StatementSC RBRACE  (35)
+	Statement : IF Expr LBRACE . StatementSC RBRACE ELSE LBRACE StatementSC RBRACE  (36)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 135
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	StatementSC  goto 136
+	ParseArgs  goto 59
+	Statement  goto 65
+
+
+state 106
+	Statement : FOR LBRACE RBRACE .  (38)
+
+	.  reduce 38
+
+
+state 107
+	Statement : FOR LBRACE StatementSC . RBRACE  (37)
+	StatementSC : StatementSC . Statement SEMICOLON  (48)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 137
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	ParseArgs  goto 59
+	Statement  goto 85
+
+
+state 108
+	Statement : FOR Expr LBRACE . RBRACE  (39)
+	Statement : FOR Expr LBRACE . StatementSC RBRACE  (40)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 138
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	StatementSC  goto 139
+	ParseArgs  goto 59
+	Statement  goto 65
+
+
+state 109
+	Statement : PRINT LPAR STRLIT . RPAR  (45)
+
+	RPAR  shift 140
+	.  error
+
+
+state 110
+	Statement : PRINT LPAR Expr . RPAR  (44)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	RPAR  shift 141
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	.  error
+
+
+state 111
+	ParseArgs : ID2 COMMA BLANKID . ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  (50)
+	ParseArgs : ID2 COMMA BLANKID . ASSIGN PARSEINT LPAR error RPAR  (51)
+
+	ASSIGN  shift 142
+	.  error
+
+
+state 112
+	FuncInvocation : ID2 LPAR error . RPAR  (52)
+
+	RPAR  shift 143
+	.  error
+
+
+state 113
+	Expr2 : COMMA . Expr  (55)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 144
+
+
+state 114
+	FuncInvocation : ID2 LPAR RPAR .  (54)
+
+	.  reduce 54
+
+
+state 115
+	Expr2 : Expr . COMMA Expr2  (56)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	COMMA  shift 145
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	.  error
+
+
+state 116
+	FuncInvocation : ID2 LPAR Expr2 . RPAR  (53)
+
+	RPAR  shift 146
+	.  error
+
+
+state 117
+	Statement : ID2 ASSIGN Expr .  (29)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	error  reduce 29
+	SEMICOLON  reduce 29
+	LBRACE  reduce 29
+	RBRACE  reduce 29
+	VAR  reduce 29
+	RETURN  reduce 29
+	IF  reduce 29
+	FOR  reduce 29
+	PRINT  reduce 29
+	IDENTIFIER  reduce 29
+
+
+state 118
+	COMMAID : COMMA ID2 Type COMMAID .  (22)
+
+	.  reduce 22
+
+
+state 119
+	StatementSC : StatementSC Statement SEMICOLON .  (48)
+
+	.  reduce 48
+
+
+state 120
+	Expr : LPAR error RPAR .  (78)
+
+	.  reduce 78
+
+
+state 121
+	Expr : LPAR Expr RPAR .  (77)
+
+	.  reduce 77
+
+
+state 122
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr STAR Expr .  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	.  reduce 67
+
+
+state 123
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr DIV Expr .  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	.  reduce 68
+
+
+state 124
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr MINUS Expr .  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MOD  shift 102
+	error  reduce 66
+	SEMICOLON  reduce 66
+	COMMA  reduce 66
+	LBRACE  reduce 66
+	RBRACE  reduce 66
+	RPAR  reduce 66
+	RSQ  reduce 66
+	MINUS  reduce 66
+	PLUS  reduce 66
+	GE  reduce 66
+	GT  reduce 66
+	LE  reduce 66
+	LT  reduce 66
+	NE  reduce 66
+	EQ  reduce 66
+	VAR  reduce 66
+	AND  reduce 66
+	OR  reduce 66
+	RETURN  reduce 66
+	IF  reduce 66
+	FOR  reduce 66
+	PRINT  reduce 66
+	IDENTIFIER  reduce 66
+
+
+state 125
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr PLUS Expr .  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MOD  shift 102
+	error  reduce 65
+	SEMICOLON  reduce 65
+	COMMA  reduce 65
+	LBRACE  reduce 65
+	RBRACE  reduce 65
+	RPAR  reduce 65
+	RSQ  reduce 65
+	MINUS  reduce 65
+	PLUS  reduce 65
+	GE  reduce 65
+	GT  reduce 65
+	LE  reduce 65
+	LT  reduce 65
+	NE  reduce 65
+	EQ  reduce 65
+	VAR  reduce 65
+	AND  reduce 65
+	OR  reduce 65
+	RETURN  reduce 65
+	IF  reduce 65
+	FOR  reduce 65
+	PRINT  reduce 65
+	IDENTIFIER  reduce 65
+
+
+state 126
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr GE Expr .  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	MOD  shift 102
+	error  reduce 59
+	SEMICOLON  reduce 59
+	COMMA  reduce 59
+	LBRACE  reduce 59
+	RBRACE  reduce 59
+	RPAR  reduce 59
+	RSQ  reduce 59
+	GE  reduce 59
+	GT  reduce 59
+	LE  reduce 59
+	LT  reduce 59
+	NE  reduce 59
+	EQ  reduce 59
+	VAR  reduce 59
+	AND  reduce 59
+	OR  reduce 59
+	RETURN  reduce 59
+	IF  reduce 59
+	FOR  reduce 59
+	PRINT  reduce 59
+	IDENTIFIER  reduce 59
+
+
+state 127
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr GT Expr .  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	MOD  shift 102
+	error  reduce 60
+	SEMICOLON  reduce 60
+	COMMA  reduce 60
+	LBRACE  reduce 60
+	RBRACE  reduce 60
+	RPAR  reduce 60
+	RSQ  reduce 60
+	GE  reduce 60
+	GT  reduce 60
+	LE  reduce 60
+	LT  reduce 60
+	NE  reduce 60
+	EQ  reduce 60
+	VAR  reduce 60
+	AND  reduce 60
+	OR  reduce 60
+	RETURN  reduce 60
+	IF  reduce 60
+	FOR  reduce 60
+	PRINT  reduce 60
+	IDENTIFIER  reduce 60
+
+
+state 128
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr LE Expr .  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	MOD  shift 102
+	error  reduce 61
+	SEMICOLON  reduce 61
+	COMMA  reduce 61
+	LBRACE  reduce 61
+	RBRACE  reduce 61
+	RPAR  reduce 61
+	RSQ  reduce 61
+	GE  reduce 61
+	GT  reduce 61
+	LE  reduce 61
+	LT  reduce 61
+	NE  reduce 61
+	EQ  reduce 61
+	VAR  reduce 61
+	AND  reduce 61
+	OR  reduce 61
+	RETURN  reduce 61
+	IF  reduce 61
+	FOR  reduce 61
+	PRINT  reduce 61
+	IDENTIFIER  reduce 61
+
+
+state 129
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr LT Expr .  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	MOD  shift 102
+	error  reduce 62
+	SEMICOLON  reduce 62
+	COMMA  reduce 62
+	LBRACE  reduce 62
+	RBRACE  reduce 62
+	RPAR  reduce 62
+	RSQ  reduce 62
+	GE  reduce 62
+	GT  reduce 62
+	LE  reduce 62
+	LT  reduce 62
+	NE  reduce 62
+	EQ  reduce 62
+	VAR  reduce 62
+	AND  reduce 62
+	OR  reduce 62
+	RETURN  reduce 62
+	IF  reduce 62
+	FOR  reduce 62
+	PRINT  reduce 62
+	IDENTIFIER  reduce 62
+
+
+state 130
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr NE Expr .  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	MOD  shift 102
+	error  reduce 63
+	SEMICOLON  reduce 63
+	COMMA  reduce 63
+	LBRACE  reduce 63
+	RBRACE  reduce 63
+	RPAR  reduce 63
+	RSQ  reduce 63
+	GE  reduce 63
+	GT  reduce 63
+	LE  reduce 63
+	LT  reduce 63
+	NE  reduce 63
+	EQ  reduce 63
+	VAR  reduce 63
+	AND  reduce 63
+	OR  reduce 63
+	RETURN  reduce 63
+	IF  reduce 63
+	FOR  reduce 63
+	PRINT  reduce 63
+	IDENTIFIER  reduce 63
+
+
+state 131
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr EQ Expr .  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	MOD  shift 102
+	error  reduce 64
+	SEMICOLON  reduce 64
+	COMMA  reduce 64
+	LBRACE  reduce 64
+	RBRACE  reduce 64
+	RPAR  reduce 64
+	RSQ  reduce 64
+	GE  reduce 64
+	GT  reduce 64
+	LE  reduce 64
+	LT  reduce 64
+	NE  reduce 64
+	EQ  reduce 64
+	VAR  reduce 64
+	AND  reduce 64
+	OR  reduce 64
+	RETURN  reduce 64
+	IF  reduce 64
+	FOR  reduce 64
+	PRINT  reduce 64
+	IDENTIFIER  reduce 64
+
+
+state 132
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+	Expr : Expr MOD Expr .  (69)
+
+	.  reduce 69
+
+
+state 133
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr AND Expr .  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	error  reduce 58
+	SEMICOLON  reduce 58
+	COMMA  reduce 58
+	LBRACE  reduce 58
+	RBRACE  reduce 58
+	RPAR  reduce 58
+	RSQ  reduce 58
+	VAR  reduce 58
+	AND  reduce 58
+	OR  reduce 58
+	RETURN  reduce 58
+	IF  reduce 58
+	FOR  reduce 58
+	PRINT  reduce 58
+	IDENTIFIER  reduce 58
+
+
+state 134
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr OR Expr .  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	error  reduce 57
+	SEMICOLON  reduce 57
+	COMMA  reduce 57
+	LBRACE  reduce 57
+	RBRACE  reduce 57
+	RPAR  reduce 57
+	RSQ  reduce 57
+	VAR  reduce 57
+	OR  reduce 57
+	RETURN  reduce 57
+	IF  reduce 57
+	FOR  reduce 57
+	PRINT  reduce 57
+	IDENTIFIER  reduce 57
+
+
+state 135
+	Statement : IF Expr LBRACE RBRACE .  (32)
+	Statement : IF Expr LBRACE RBRACE . ELSE LBRACE RBRACE  (34)
+	Statement : IF Expr LBRACE RBRACE . ELSE LBRACE StatementSC RBRACE  (35)
+
+	ELSE  shift 147
+	error  reduce 32
+	SEMICOLON  reduce 32
+	LBRACE  reduce 32
+	RBRACE  reduce 32
+	VAR  reduce 32
+	RETURN  reduce 32
+	IF  reduce 32
+	FOR  reduce 32
+	PRINT  reduce 32
+	IDENTIFIER  reduce 32
+
+
+state 136
+	Statement : IF Expr LBRACE StatementSC . RBRACE  (33)
+	Statement : IF Expr LBRACE StatementSC . RBRACE ELSE LBRACE StatementSC RBRACE  (36)
+	StatementSC : StatementSC . Statement SEMICOLON  (48)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 148
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	ParseArgs  goto 59
+	Statement  goto 85
+
+
+state 137
+	Statement : FOR LBRACE StatementSC RBRACE .  (37)
+
+	.  reduce 37
+
+
+state 138
+	Statement : FOR Expr LBRACE RBRACE .  (39)
+
+	.  reduce 39
+
+
+state 139
+	Statement : FOR Expr LBRACE StatementSC . RBRACE  (40)
+	StatementSC : StatementSC . Statement SEMICOLON  (48)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 149
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	ParseArgs  goto 59
+	Statement  goto 85
+
+
+state 140
+	Statement : PRINT LPAR STRLIT RPAR .  (45)
+
+	.  reduce 45
+
+
+state 141
+	Statement : PRINT LPAR Expr RPAR .  (44)
+
+	.  reduce 44
+
+
+state 142
+	ParseArgs : ID2 COMMA BLANKID ASSIGN . PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR  (50)
+	ParseArgs : ID2 COMMA BLANKID ASSIGN . PARSEINT LPAR error RPAR  (51)
+
+	PARSEINT  shift 150
+	.  error
+
+
+state 143
+	FuncInvocation : ID2 LPAR error RPAR .  (52)
+
+	.  reduce 52
+
+
+state 144
+	Expr2 : COMMA Expr .  (55)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	RPAR  reduce 55
+
+
+state 145
+	Expr2 : Expr COMMA . Expr2  (56)
+
+	COMMA  shift 113
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 115
+	Expr2  goto 151
+
+
+state 146
+	FuncInvocation : ID2 LPAR Expr2 RPAR .  (53)
+
+	.  reduce 53
+
+
+state 147
+	Statement : IF Expr LBRACE RBRACE ELSE . LBRACE RBRACE  (34)
+	Statement : IF Expr LBRACE RBRACE ELSE . LBRACE StatementSC RBRACE  (35)
+
+	LBRACE  shift 152
+	.  error
+
+
+state 148
+	Statement : IF Expr LBRACE StatementSC RBRACE .  (33)
+	Statement : IF Expr LBRACE StatementSC RBRACE . ELSE LBRACE StatementSC RBRACE  (36)
+
+	ELSE  shift 153
+	error  reduce 33
+	SEMICOLON  reduce 33
+	LBRACE  reduce 33
+	RBRACE  reduce 33
+	VAR  reduce 33
+	RETURN  reduce 33
+	IF  reduce 33
+	FOR  reduce 33
+	PRINT  reduce 33
+	IDENTIFIER  reduce 33
+
+
+state 149
+	Statement : FOR Expr LBRACE StatementSC RBRACE .  (40)
+
+	.  reduce 40
+
+
+state 150
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT . LPAR CMDARGS LSQ Expr RSQ RPAR  (50)
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT . LPAR error RPAR  (51)
+
+	LPAR  shift 154
+	.  error
+
+
+state 151
+	Expr2 : Expr COMMA Expr2 .  (56)
+
+	.  reduce 56
+
+
+state 152
+	Statement : IF Expr LBRACE RBRACE ELSE LBRACE . RBRACE  (34)
+	Statement : IF Expr LBRACE RBRACE ELSE LBRACE . StatementSC RBRACE  (35)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 155
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	StatementSC  goto 156
+	ParseArgs  goto 59
+	Statement  goto 65
+
+
+state 153
+	Statement : IF Expr LBRACE StatementSC RBRACE ELSE . LBRACE StatementSC RBRACE  (36)
+
+	LBRACE  shift 157
+	.  error
+
+
+state 154
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR . CMDARGS LSQ Expr RSQ RPAR  (50)
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR . error RPAR  (51)
+
+	error  shift 158
+	CMDARGS  shift 159
+	.  error
+
+
+state 155
+	Statement : IF Expr LBRACE RBRACE ELSE LBRACE RBRACE .  (34)
+
+	.  reduce 34
+
+
+state 156
+	Statement : IF Expr LBRACE RBRACE ELSE LBRACE StatementSC . RBRACE  (35)
+	StatementSC : StatementSC . Statement SEMICOLON  (48)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 160
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	ParseArgs  goto 59
+	Statement  goto 85
+
+
+state 157
+	Statement : IF Expr LBRACE StatementSC RBRACE ELSE LBRACE . StatementSC RBRACE  (36)
+
+	error  shift 48
+	LBRACE  shift 50
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	StatementSC  goto 161
+	ParseArgs  goto 59
+	Statement  goto 65
+
+
+state 158
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR error . RPAR  (51)
+
+	RPAR  shift 162
+	.  error
+
+
+state 159
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS . LSQ Expr RSQ RPAR  (50)
+
+	LSQ  shift 163
+	.  error
+
+
+state 160
+	Statement : IF Expr LBRACE RBRACE ELSE LBRACE StatementSC RBRACE .  (35)
+
+	.  reduce 35
+
+
+state 161
+	Statement : IF Expr LBRACE StatementSC RBRACE ELSE LBRACE StatementSC . RBRACE  (36)
+	StatementSC : StatementSC . Statement SEMICOLON  (48)
+
+	error  shift 48
+	LBRACE  shift 50
+	RBRACE  shift 164
+	RETURN  shift 52
+	IF  shift 53
+	FOR  shift 54
+	PRINT  shift 55
+	IDENTIFIER  shift 11
+	.  error
+
+	FuncInvocation  goto 57
+	ID2  goto 58
+	ParseArgs  goto 59
+	Statement  goto 85
+
+
+state 162
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR .  (51)
+
+	.  reduce 51
+
+
+state 163
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ . Expr RSQ RPAR  (50)
+
+	LPAR  shift 66
+	MINUS  shift 67
+	PLUS  shift 68
+	NOT  shift 69
+	IDENTIFIER  shift 11
+	NATURAL  shift 70
+	DECIMAL  shift 71
+	.  error
+
+	FuncInvocation  goto 72
+	ID2  goto 73
+	Expr  goto 165
+
+
+state 164
+	Statement : IF Expr LBRACE StatementSC RBRACE ELSE LBRACE StatementSC RBRACE .  (36)
+
+	.  reduce 36
+
+
+state 165
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr . RSQ RPAR  (50)
+	Expr : Expr . OR Expr  (57)
+	Expr : Expr . AND Expr  (58)
+	Expr : Expr . GE Expr  (59)
+	Expr : Expr . GT Expr  (60)
+	Expr : Expr . LE Expr  (61)
+	Expr : Expr . LT Expr  (62)
+	Expr : Expr . NE Expr  (63)
+	Expr : Expr . EQ Expr  (64)
+	Expr : Expr . PLUS Expr  (65)
+	Expr : Expr . MINUS Expr  (66)
+	Expr : Expr . STAR Expr  (67)
+	Expr : Expr . DIV Expr  (68)
+	Expr : Expr . MOD Expr  (69)
+
+	RSQ  shift 166
+	STAR  shift 92
+	DIV  shift 93
+	MINUS  shift 94
+	PLUS  shift 95
+	GE  shift 96
+	GT  shift 97
+	LE  shift 98
+	LT  shift 99
+	NE  shift 100
+	EQ  shift 101
+	MOD  shift 102
+	AND  shift 103
+	OR  shift 104
+	.  error
+
+
+state 166
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ . RPAR  (50)
+
+	RPAR  shift 167
+	.  error
+
+
+state 167
+	ParseArgs : ID2 COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR .  (50)
+
+	.  reduce 50
+
+
+State 52 contains 1 shift/reduce conflict.
+
+
+46 terminals, 19 nonterminals
+79 grammar rules, 168 states
+
+grammar parser grammar
+symbol# value# symbol
+     0      0  $end
+     1    256  error
+     2    257  SEMICOLON
+     3    258  COMMA
+     4    259  LBRACE
+     5    260  RBRACE
+     6    261  LPAR
+     7    262  RPAR
+     8    263  LSQ
+     9    264  RSQ
+    10    265  STAR
+    11    266  DIV
+    12    267  MINUS
+    13    268  PLUS
+    14    269  GE
+    15    270  GT
+    16    271  LE
+    17    272  LT
+    18    273  NE
+    19    274  EQ
+    20    275  VAR
+    21    276  MOD
+    22    277  NOT
+    23    278  AND
+    24    279  OR
+    25    280  INT
+    26    281  FLOAT32
+    27    282  BOOL
+    28    283  STRING
+    29    284  RETURN
+    30    285  PACKAGE
+    31    286  ELSE
+    32    287  IF
+    33    288  FOR
+    34    289  ASSIGN
+    35    290  PARSEINT
+    36    291  CMDARGS
+    37    292  FUNC
+    38    293  BLANKID
+    39    294  PRINT
+    40    295  IDENTIFIER
+    41    296  RESERVED
+    42    297  NATURAL
+    43    298  DECIMAL
+    44    299  STRLIT
+    45    300  LOW
+    46    301  $accept
+    47    302  Program
+    48    303  Declarations
+    49    304  Type
+    50    305  VarDeclaration
+    51    306  VarsAndStatement
+    52    307  VarsSpec
+    53    308  FuncDeclaration
+    54    309  FuncBody
+    55    310  FuncInvocation
+    56    311  FuncParams
+    57    312  ID2
+    58    313  COMMA2
+    59    314  COMMAID
+    60    315  StatementSC
+    61    316  ParseArgs
+    62    317  Statement
+    63    318  Expr
+    64    319  Expr2

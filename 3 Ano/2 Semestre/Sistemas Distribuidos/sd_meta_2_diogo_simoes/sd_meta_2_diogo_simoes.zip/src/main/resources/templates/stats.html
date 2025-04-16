@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Googled - Stats</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script th:src="@{/scripts/main.js}"></script>
+</head>
+
+<body>
+    <div id="stats-container" class="container mt-4">
+        <a href="/">
+        <h1 style="color: white;">Googled - Stats</h1>
+        <div class="spacer" style="--height: 20px;"></div>
+        <button type="submit" id="stats">Getting gateway stats...</button>
+    </div>
+    </div>
+</body>
+
+</html>

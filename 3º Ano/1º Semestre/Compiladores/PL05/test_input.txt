@@ -1,3 +1,0 @@
-myFunction(integer x, double x) = x + 1;
-anotherFunction(integer y, integer z, integer y) = y * z;
-validFunction(integer a, double b) = a + b;

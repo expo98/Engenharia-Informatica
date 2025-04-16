@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Googled - Hacker News Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div th:if="${not #lists.isEmpty(results)}">
+            <div class="list-group">
+                <div th:each="entry : ${results}">
+                    <a th:href="${entry.key}" class="list-group-item list-group-item-action"
+                        th:each="title : ${entry.value}" th:text="${title}"></a>
+                </div>
+            </div>
+        </div>
+        <div th:if="${#lists.isEmpty(results)}">
+            <p>No results found for <span th:text="${query}"></span>.</p>
+        </div>
+    </div>
+</body>
+
+</html>
