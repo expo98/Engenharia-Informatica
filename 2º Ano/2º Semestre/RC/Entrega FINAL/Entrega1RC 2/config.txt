@@ -1,0 +1,7 @@
+user;pass;administrador
+miguel;pass;administrador
+joao;joao;administrador
+a;b;administrador
+novouser;novouser;professor
+ole;ola;professor
+user;pass;administrador

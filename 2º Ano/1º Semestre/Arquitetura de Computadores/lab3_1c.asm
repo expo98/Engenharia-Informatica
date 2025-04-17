@@ -1,0 +1,47 @@
+.data
+
+
+numeros: .word 0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0xF7,0xFF,0xB9,0xBF,0xF9,0xF1
+
+
+
+.text
+.globl main
+
+main:
+
+li $a1, 0xFFFF0010
+
+li $a2, 0xFFFF0011
+	
+li $t0, 0
+li $t1,0
+
+la $t2,numeros
+
+addi $t2,$t2,4
+
+loop:
+lw $t3,($t2)
+sb $t3, ($a1)
+
+addi $t2,$t2,4
+addi $t0,$t0,1
+bne $t0,9,loop
+
+
+addi, $t2,$t2,-36
+
+lw $t3,($t2)
+sb $t3, ($a2)
+
+addi $t2,$t2,-4
+
+
+
+loop2:
+lw $t3,($t2)
+sb $t3, ($a1)
+addi $t2,$t2,4
+addi $t1,$t1,1
+bne $t1,7,loop2

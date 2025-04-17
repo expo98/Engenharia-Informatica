@@ -1,0 +1,45 @@
+Conjunto A1:
+500 rotacoes
+Elapsed time: 0.000149 seconds
+
+
+
+Conjunto A2:
+2500 rotacoes
+Elapsed time: 0.000641 seconds
+
+
+
+Conjunto A3:
+5000 rotacoes
+Elapsed time: 0.001268 seconds
+
+
+
+Conjunto A4:
+22499 rotacoes
+Elapsed time: 0.004884 seconds
+
+
+
+Conjunto B1:
+500 rotacoes
+Elapsed time: 0.000103 seconds
+
+
+
+Conjunto B2:
+2500 rotacoes
+Elapsed time: 0.000530 seconds
+
+
+
+Conjunto B3:
+5000 rotacoes
+Elapsed time: 0.000936 seconds
+
+
+
+Conjunto B4:
+25000 rotacoes
+Elapsed time: 0.004794 seconds

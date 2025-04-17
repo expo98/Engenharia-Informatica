@@ -1,0 +1,78 @@
+pção: 1
+Conjunto A1
+Elapsed time: 0.000363 seconds
+
+
+
+Conjunto A2
+Elapsed time: 0.001949 seconds
+
+
+
+Conjunto A3
+Elapsed time: 0.003717 seconds
+
+
+
+Conjunto A4
+Elapsed time: 0.020314 seconds
+
+
+
+Conjunto B1
+Elapsed time: 0.000229 seconds
+
+
+
+Conjunto B2
+Elapsed time: 0.001377 seconds
+
+
+
+Conjunto B3
+Elapsed time: 0.003180 seconds
+
+
+
+Conjunto B4
+Elapsed time: 0.019649 seconds
+
+
+
+Conjunto C1
+Elapsed time: 0.000231 seconds
+
+
+
+Conjunto C2
+Elapsed time: 0.001382 seconds
+
+
+
+Conjunto C3
+Elapsed time: 0.003427 seconds
+
+
+
+Conjunto C4
+Elapsed time: 0.020121 seconds
+
+
+
+Conjunto D1
+Elapsed time: 0.000271 seconds
+
+
+
+Conjunto D2
+Elapsed time: 0.001452 seconds
+
+
+
+Conjunto D3
+Elapsed time: 0.003068 seconds
+
+
+
+Conjunto D4
+Elapsed time: 0.019776 seconds

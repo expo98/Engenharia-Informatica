@@ -1,0 +1,62 @@
+Conjunto A1:
+Elapsed time: 0.004212 seconds
+
+
+Conjunto A2:
+Elapsed time: 0.087487 seconds
+
+
+Conjunto A3:
+Elapsed time: 0.330673 seconds
+
+
+Conjunto A4:
+Elapsed time: 0.109963 seconds
+
+
+Conjunto B1:
+Elapsed time: 0.003336 seconds
+
+
+Conjunto B2:
+Elapsed time: 0.083873 seconds
+
+
+Conjunto B3:
+Elapsed time: 0.349496 seconds
+
+
+Conjunto B4:
+Elapsed time: 8.869293 seconds
+
+
+Conjunto C1:
+Elapsed time: 0.000188 seconds
+
+
+Conjunto C2:
+Elapsed time: 0.001093 seconds
+
+
+Conjunto C3:
+Elapsed time: 0.002516 seconds
+
+
+Conjunto C4:
+Elapsed time: 0.018736 seconds
+
+
+Conjunto D1:
+Elapsed time: 0.000097 seconds
+
+
+Conjunto D2:
+Elapsed time: 0.000599 seconds
+
+
+Conjunto D3:
+Elapsed time: 0.001335 seconds
+
+
+Conjunto D4:
+Elapsed time: 0.008315 seconds

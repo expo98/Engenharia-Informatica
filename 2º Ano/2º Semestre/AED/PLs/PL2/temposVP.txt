@@ -1,0 +1,78 @@
+Conjunto A1
+Elapsed time: 0.001089 seconds
+898 rotações
+
+
+Conjunto A2
+Elapsed time: 0.021975 seconds
+3600 rotações
+
+
+Conjunto A3
+Elapsed time: 0.147074 seconds
+4500 rotações
+
+
+Conjunto A4
+Elapsed time: 2.145419 seconds
+36000 rotações
+
+
+Conjunto B1
+Elapsed time: 0.369814 seconds
+0 rotações
+
+
+Conjunto B2
+Elapsed time: 1.728703 seconds
+0 rotações
+
+
+Conjunto B3
+Elapsed time: 3.275692 seconds
+0 rotações
+
+
+Conjunto B4
+Elapsed time: 8.520673 seconds
+7498 rotações
+
+
+Conjunto C1
+Elapsed time: 0.351100 seconds
+0 rotações
+
+
+Conjunto C2
+Elapsed time: 1.755350 seconds
+0 rotações
+
+
+Conjunto C3
+Elapsed time: 3.367485 seconds
+0 rotações
+
+
+Conjunto C4
+Elapsed time: 11.657688 seconds
+0 rotações
+
+
+Conjunto D1
+Elapsed time: 0.402837 seconds
+0 rotações
+
+
+Conjunto D2
+Elapsed time: 2.106775 seconds
+0 rotações
+
+
+Conjunto D3
+Elapsed time: 3.525488 seconds
+0 rotações
+
+
+Conjunto D4
+Elapsed time: 17.473638 seconds
+0 rotações

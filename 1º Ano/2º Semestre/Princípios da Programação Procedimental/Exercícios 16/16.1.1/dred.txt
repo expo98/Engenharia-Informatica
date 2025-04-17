@@ -1,0 +1,681 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "estruturas.h"
+
+
+
+int main()
+{
+    cria();
+    int opcao_menu=0;
+    while (opcao_menu <1  || opcao_menu>5)
+    {
+    printf("1) Adicionar serviço \n2) Cancelar Reserva \n3) Listar Reserva e Pré-Reserva (por data) \n4) Listar Reservas e Pré-Reservas de Cliente \n5) Executar serviço \n");
+    scanf("%d",&opcao_menu);
+
+    switch (opcao_menu)
+    {
+    case 1:
+        //Adicionar_serviço.c
+        break;
+    case 2:
+        //Cancelar_Reserva
+        break;
+    case 3:
+        //Listar Reservas e Pré-Reservas (por data)
+        break;
+    case 4:
+        //4) Listar Reservas e Pré-Reservas de Cliente 
+        break;
+    case 5:
+        //5) Executar serviço
+        break;
+    default:
+        printf("Escolha não válida\n");
+        break;
+    }
+    }
+    
+    return 0;
+}

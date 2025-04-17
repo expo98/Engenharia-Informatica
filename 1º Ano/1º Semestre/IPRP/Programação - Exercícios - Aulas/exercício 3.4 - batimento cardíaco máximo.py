@@ -1,0 +1,7 @@
+print("Vamos determinar o batimento cardíaco máximo para a sua idade.")
+
+idade = float(input("Introduza a sua idade: "))
+
+batmax = (163 + 1.16 * idade)  - (0.018 * idade ** 2)
+
+print("O valor médio do batimento cardíaco máximo para a sua idade é " + str(batmax))

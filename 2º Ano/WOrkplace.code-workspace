@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "2º Semestre/RC/Entrega1RC"
+		},
+		{
+			"path": "../../Engenharia Informática/2º Ano/2º Semestre/Sistemas Operativos/Pasta Partilhada VirtualMachine/EntregaMetaSO"
+		},
+		{
+			"path": "../../Engenharia Informática/2º Ano/2º Semestre/AED/PLs/PL3"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"pthread.h": "c"
+		}
+	}
+}
